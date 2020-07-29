@@ -2,9 +2,8 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const dashboardRouter = require('./routes/dashboard');
+const publicRouter = require('./routes/public');
 
 const app = express();
 
@@ -22,8 +21,8 @@ app.use(session({
   saveUninitialized: false
 }));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', publicRouter);
+app.use('/dashboard', dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
